@@ -1,18 +1,14 @@
 import React, {useEffect} from 'react';
-import {
-  Text,
-  View,
-} from 'react-native';
 import SplashScreen from "react-native-splash-screen";
+import { WelcomeScreen } from './src/screens/WelcomeScreen';
+import { View } from 'react-native';
 
 function App(): JSX.Element {
   useEffect(()=>{
     SplashScreen.hide();
   },[])
   return (
-      <View style={{ flex: 1 }}>
-        <Text>tEST</Text>
-      </View>
+      <WelcomeScreen/>
   );
 }
 
