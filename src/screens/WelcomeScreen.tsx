@@ -1,13 +1,32 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {Text, StyleSheet, View, TouchableOpacity, Image} from 'react-native';
-import { Stack,Divider } from "@react-native-material/core";
+import { Stack} from "@react-native-material/core";
 import { Dimensions } from 'react-native';
+import { LoginModal } from '../components/usermanagement/LoginModal';
+import { RegisterModal } from '../components/usermanagement/RegisterModal';
 
 export const WelcomeScreen = () =>{
     const screen = Dimensions.get('window');
     const containerWidth = screen.width * 1;
     const containerHeight = screen.height * 1;
+    const [loginModalVisible, setLoginModalVisible] = useState<boolean>(false)
+    const [registerModalVisible, setRegisterModalVisible] = useState<boolean>(false)
+    const openLoginModal = () => {
+        setLoginModalVisible(true);
+    };
+
+    const closeLoginModal = () => {
+        setLoginModalVisible(false);
+    };
+    const openRegisterModal = () => {
+        setRegisterModalVisible(true);
+    };
+
+    const closeRegisterModal = () => {
+        setRegisterModalVisible(false);
+    };
     return(
+        // logo shoul be small on the top left
         <View style={[styles.mainContainer, {height:containerHeight},{width:containerWidth}]}>
             <View style={styles.modalContainer}>
                 <View style={styles.imageContainer}>
@@ -17,17 +36,27 @@ export const WelcomeScreen = () =>{
                     />
                 </View>
                 {/* <View>
-                    <Text>Welcome to forgetmenot!</Text>
-                </View> */}
+                    information carousel
+                    </View> */}
                 <View style={styles.buttonContainer}>
                     <Stack style={styles.stack} fill center spacing={12}>
-                        <TouchableOpacity style={styles.button}>
+                        <TouchableOpacity style={styles.button} onPress={openLoginModal}>
                             <Text style={styles.buttonText}>Sign In</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.button}>
+                        <TouchableOpacity style={styles.button} onPress={openRegisterModal}>
                             <Text style={styles.buttonText}>Sign Up</Text>
                         </TouchableOpacity>
                     </Stack>
+                </View>
+                <View>
+                    <LoginModal 
+                    isModalVisible={loginModalVisible} 
+                    onCloseModal={closeLoginModal}
+                    />
+                    <RegisterModal
+                    isModalVisible={registerModalVisible} 
+                    onCloseModal={closeRegisterModal}
+                    /> 
                 </View>
             </View>    
         </View>
