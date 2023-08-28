@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 export const modalStyle = StyleSheet.create({
     mainContainer:{
-        height:'60%',
+        height:'65%',
         width:'100%',
         backgroundColor:'#ffff',
         position: 'absolute',
@@ -16,7 +16,7 @@ export const modalStyle = StyleSheet.create({
         paddingHorizontal:6
     },
     formContainer:{
-        marginTop:20,
+        marginTop:10,
         paddingLeft:3,
         width:'95%'
     },
@@ -76,5 +76,16 @@ export const modalStyle = StyleSheet.create({
         justifyContent: 'center',
         borderTopStartRadius:15,
         borderTopEndRadius:15
+    },
+    errorText:{
+        fontSize:11,
+        color:'red',
+        alignSelf:'flex-end'
+    },
+    submissionError:{
+        paddingTop: 7,
+        fontSize:11,
+        color:'red',
+        alignSelf:'center'
     }
 })

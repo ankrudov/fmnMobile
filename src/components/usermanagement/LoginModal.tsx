@@ -14,24 +14,25 @@ export const LoginModal: React.FC<LoginProps>= ({isModalVisible, onCloseModal}) 
     const [password, setPassword] = useState<string>('')
     const [viewPassword, setViewPassword]=useState<boolean>(true)
     const [isLoading, setLoading] = useState<boolean>(false);
+    const [errorMessage, setErrorMessage] = useState<string>('')
+    const [error, setError] = useState<boolean>(false);
     const handlePasswordToggle = ()=>{
         setViewPassword(!viewPassword)
     }
     const handleUserLogin = (email:string, password:string)=>{
-        try{
-            setLoading(true)
-            loginUser(email, password)
-            .then((data)=>{
-                console.log(data)
-            })
-            .catch((error) =>{
-                console.log(error)
-            })
-            .finally(()=>
-            setLoading(false))
-        }catch(error){
+        setLoading(true)
+        loginUser(email, password)
+        .then((data)=>{
+            console.log(data)
+        })
+        .catch((error) =>{
+            setError(true)
+            setErrorMessage(error.code)
             console.log(error)
-        }
+        })
+        .finally(()=> {
+            setLoading(false)
+        })
     }
     return(
         <Modal 
@@ -90,6 +91,7 @@ export const LoginModal: React.FC<LoginProps>= ({isModalVisible, onCloseModal}) 
                                 <Text style={styles.infoText}>Forgot Password?</Text>
                             </TouchableOpacity>
                         </View>  
+                        {error ? <Text style={modalStyle.submissionError}>{errorMessage}</Text> : null}
                     </View>
                     <View style={modalStyle.signInContainer}>
                         <TouchableOpacity onPress={()=>handleUserLogin(email,password)}>
