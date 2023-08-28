@@ -83,7 +83,7 @@ export const modalStyle = StyleSheet.create({
         alignSelf:'flex-end'
     },
     submissionError:{
-        paddingTop: 4,
+        paddingTop: 7,
         fontSize:11,
         color:'red',
         alignSelf:'center'
